@@ -23,8 +23,9 @@ var Weekdays = React.createClass({
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    flexDirection: 'column',
+    justifyContent: 'center', //Moves height wise
+    alignItems: 'center' //Moves width wise
   }
 });
 

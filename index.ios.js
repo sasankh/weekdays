@@ -1,6 +1,7 @@
 // Import Library
 const React = require('react');
 const ReactNative = require('react-native');
+const Moment = require('moment');
 
 const AppRegistry = ReactNative.AppRegistry;
 const Text = ReactNative.Text;
@@ -9,32 +10,27 @@ const StyleSheet = ReactNative.StyleSheet;
 
 const DayItem = require('./src/day-item');
 
-const DAYS = [
-  'Sunday',
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thurday',
-  'Friday',
-  'Saturday'
-];
-
 // Create a react Component
 const Weekdays = React.createClass({
   render: function() {
     return (
       <View style={styles.container}>
-        <Text>
-          Days of the week:
-        </Text>
         {this.days()}
       </View>
     );
   },
   days: () => {
-    return DAYS.map((day) => {
-      return <DayItem day={day} key={day} />
-    });
+    const daysItems = [];
+
+    for(let i = 0; i < 7; i++) {
+      let day = Moment().add(i, 'days').format('dddd');
+
+      daysItems.push(
+        <DayItem day={day} daysUntil={i} key={day} />
+      );
+    }
+
+    return daysItems;
   }
 });
 

@@ -1,26 +1,39 @@
-// // Import Library
-var React = require('react');
-var ReactNative = require('react-native');
-var AppRegistry = ReactNative.AppRegistry;
-var Text = ReactNative.Text;
-var View = ReactNative.View;
-var StyleSheet = ReactNative.StyleSheet;
+// Import Library
+const React = require('react');
+const ReactNative = require('react-native');
+const AppRegistry = ReactNative.AppRegistry;
+const Text = ReactNative.Text;
+const View = ReactNative.View;
+const StyleSheet = ReactNative.StyleSheet;
+
+const DayItem = require('./src/day-item');
+
+const DAYS = [
+  'Sunday',
+  'Monday',
+  'Tuesday',
+  'Wednesday',
+  'Thurday',
+  'Friday',
+  'Saturday'
+];
 
 // Create a react Component
-var Weekdays = React.createClass({
+const Weekdays = React.createClass({
   render: () => {
     return (
       <View style={styles.container}>
         <Text>
           Days of the week:
         </Text>
+        <DayItem />
       </View>
     );
   }
 });
 
 //Style the React Component
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',

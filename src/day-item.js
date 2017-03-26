@@ -2,24 +2,44 @@
 const React = require('react');
 const ReactNative = require('react-native');
 const Text = ReactNative.Text;
-const StyleSheet = ReactNative.StyleSheet;
 
 //Create out component
 const DayItem = React.createClass({
   render: function() {
     return (
-      <Text style={styles.day}>
+      <Text style={this.style()}>
         {this.props.day}
       </Text>
     );
-  }
-});
+  },
 
-//Style our component
-const styles = StyleSheet.create({
-  day: {
-    fontSize: 18,
-    color: '#0000FF'
+  style: function() {
+    return {
+      color: this.color(),
+      fontWeight: this.fontWeight(),
+      fontSize: this.fontSize(),
+      lineHeight: this.lineHeight()
+    }
+  },
+
+  color: function() {
+    let opacity = 1 / (this.props.daysUntil + 1);
+
+    return 'rgba(0, 0, 0, ' + opacity + ')';
+  },
+
+  fontWeight: function() {
+    let weight = (7 - this.props.daysUntil);
+
+    return String(weight * 100);
+  },
+
+  fontSize: function() {
+    return 60 - 6 * this.props.daysUntil;
+  },
+
+  lineHeight: function() {
+    return 70 - 4 * this.props.daysUntil;
   }
 });
 

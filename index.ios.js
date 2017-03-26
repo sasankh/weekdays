@@ -19,7 +19,8 @@ const Weekdays = React.createClass({
       </View>
     );
   },
-  days: () => {
+
+  days: function() {
     const daysItems = [];
 
     for(let i = 0; i < 7; i++) {

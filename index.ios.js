@@ -20,13 +20,13 @@ const DAYS = [
 
 // Create a react Component
 const Weekdays = React.createClass({
-  render: () => {
+  render: function() {
     return (
       <View style={styles.container}>
         <Text>
           Days of the week:
         </Text>
-        <DayItem />
+        <DayItem day={DAYS[0]}/>
       </View>
     );
   }

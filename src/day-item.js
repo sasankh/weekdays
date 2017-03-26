@@ -6,10 +6,10 @@ const StyleSheet = ReactNative.StyleSheet;
 
 //Create out component
 const DayItem = React.createClass({
-  render: () => {
+  render: function() {
     return (
       <Text style={styles.day}>
-        A day of the week
+        {this.props.day}
       </Text>
     );
   }

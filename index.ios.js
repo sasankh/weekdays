@@ -1,6 +1,7 @@
 // Import Library
 const React = require('react');
 const ReactNative = require('react-native');
+
 const AppRegistry = ReactNative.AppRegistry;
 const Text = ReactNative.Text;
 const View = ReactNative.View;
@@ -26,9 +27,14 @@ const Weekdays = React.createClass({
         <Text>
           Days of the week:
         </Text>
-        <DayItem day={DAYS[0]}/>
+        {this.days()}
       </View>
     );
+  },
+  days: () => {
+    return DAYS.map((day) => {
+      return <DayItem day={day} key={day} />
+    });
   }
 });
 

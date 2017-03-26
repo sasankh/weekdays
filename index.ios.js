@@ -1,53 +1,51 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+// Import Library
+const React = require('react');
+const ReactNative = require('react-native');
+const Moment = require('moment');
 
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+const AppRegistry = ReactNative.AppRegistry;
+const Text = ReactNative.Text;
+const View = ReactNative.View;
+const StyleSheet = ReactNative.StyleSheet;
 
-export default class weekdays extends Component {
-  render() {
+const DayItem = require('./src/day-item');
+
+// Create a react Component
+const Weekdays = React.createClass({
+  render: function() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+        {this.days()}
       </View>
     );
-  }
-}
+  },
 
+  days: function() {
+    const daysItems = [];
+
+    for(let i = 0; i < 7; i++) {
+      let day = Moment().add(i, 'days').format('dddd');
+
+      daysItems.push(
+        <DayItem day={day} daysUntil={i} key={day} />
+      );
+    }
+
+    return daysItems;
+  }
+});
+
+//Style the React Component
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    flexDirection: 'column',
+    justifyContent: 'center', //Moves height wise
+    alignItems: 'center' //Moves width wise
+  }
 });
 
-AppRegistry.registerComponent('weekdays', () => weekdays);
+// Show the react component on the screen
+AppRegistry.registerComponent('weekdays', () => {
+  return Weekdays;
+});
